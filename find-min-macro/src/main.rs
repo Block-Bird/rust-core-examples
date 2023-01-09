@@ -13,4 +13,7 @@ fn main() {
     println!("{}", find_min!(1));
     println!("{}", find_min!(1 + 2, 2));
     println!("{}", find_min!(5, 2 * 3, 4));
+    println!("{}", find_min!(5, 2 * 3, 1, 9*8, 9,7));
+
 }
+
