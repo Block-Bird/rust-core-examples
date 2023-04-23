@@ -9,6 +9,19 @@ struct Block {
     hash: String,
 }
 
+macro_rules! sum {
+    ( $( $x:expr ),* ) => {
+        {
+            let mut temp_sum = 0;
+            $(
+                temp_sum += $x;
+            )*
+            temp_sum
+        }
+    };
+}
+
+
 macro_rules! find_min {
     ($x: expr) => ($x); 
     ($x: expr, $($y: expr), +) => {
@@ -35,7 +48,7 @@ fn is_valid_new_block(new_block: &Block, previous_block: &Block) -> bool {
         return false;
     }
     if calculate_hash(previous_block) != new_block.previous_hash {
-        return false;
+        return false;   
     }
     if calculate_hash(new_block) != new_block.hash {
         return false;
@@ -58,6 +71,31 @@ macro_rules! print_binary {
         println!("{:#b}", $val);
     };
 }
+
+
+
+
+macro_rules! add_func {
+    () => (
+        fn add(a: i32, b: i32) -> i32 {
+            a + b
+        }
+    );
+}
+
+add_func!();
+
+macro_rules! sub_func {
+    () => (
+        fn sub(a: i32, b: i32) -> i32 {
+            a - b
+        }
+    );
+}
+
+
+
+sub_func!();
 
 
 fn main() {
@@ -94,29 +132,12 @@ fn main() {
     }
 
 
+    let a = 1;
+    let b = 2;
+    let c = 3;
+    let d = 4;
+    let total = sum!(a, b, c, d);
+    println!("The sum of {} + {} + {} + {} is {}", a, b, c, d, total);
+    
 
 }
-
-
-macro_rules! add_func {
-    () => (
-        fn add(a: i32, b: i32) -> i32 {
-            a + b
-        }
-    );
-}
-
-add_func!();
-
-macro_rules! sub_func {
-    () => (
-        fn sub(a: i32, b: i32) -> i32 {
-            a - b
-        }
-    );
-}
-
-
-
-
-sub_func!();
