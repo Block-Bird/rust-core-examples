@@ -1,5 +1,15 @@
 use std::fmt::Write;
 
+macro_rules! my_vec {
+    ($($x:expr),*) => {
+        {
+            let mut temp_vec = Vec::new();
+            $(temp_vec.push($x);)*
+            temp_vec
+        }
+    };
+}
+
 #[derive(Debug)]
 struct Block {
     index: u32,
@@ -106,6 +116,10 @@ fn main() {
     // let result = sub(5, 2);
     // println!("Result: {}", result);
 
+    let my_vector = my_vec![1, 2, 3];
+    println!("{:?}", my_vector); // prints "[1, 2, 3]"
+
+
     let num: u8 = 42;
     print_binary!(num);
 
@@ -141,3 +155,4 @@ fn main() {
     
 
 }
+
