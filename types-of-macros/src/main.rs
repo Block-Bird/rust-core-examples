@@ -1,3 +1,5 @@
+use proc_macro::TokenStream;
+use proc_macro::*;
 fn main() {
     println!("Hello, world!");
 }
@@ -5,7 +7,7 @@ fn main() {
 
 // Function-like procedural macros
 #[proc_macro]
-pub fn foo(body: String) -> String { 
+pub fn foo(body: TokenStream) -> TokenStream { 
     body
 }
 foo!("Here and there"); 
@@ -14,12 +16,12 @@ foo!("Here and there");
 
 // Custom derive procedural macros
 #[proc_macro_derive(Bar)]
-pub fn bar(body: TokenStream) -> TokenStream { ... }
+pub fn bar(body: TokenStream) -> TokenStream {  }
 
 #[derive(Bar)]
 struct S;
 
-Custom attributes
+// Custom attributes
 #[proc_macro_attribute]
 pub fn baz (attr: TokenStream, 
 item : TokenStream ) -> TokenStream {
@@ -28,5 +30,5 @@ item : TokenStream ) -> TokenStream {
 
 #[baz]
 fn some_item() {
-    
+
 }
