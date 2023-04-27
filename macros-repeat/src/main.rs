@@ -10,6 +10,18 @@ macro_rules! my_vec {
     };
 }
 
+macro_rules! my_vec {
+    ( $( $x:expr ),* ) => {
+        {
+            let mut v = Vec::new();
+            $(
+                v.push($x);
+            )*
+            v
+        }
+    };
+}
+
 #[derive(Debug)]
 struct Block {
     index: u32,
@@ -153,6 +165,9 @@ fn main() {
     let total = sum!(a, b, c, d);
     println!("The sum of {} + {} + {} + {} is {}", a, b, c, d, total);
     
+    // let v = my_vec![1, 2, 3];
+    // println!("{:?}", v); // prints [1, 2, 3]
+
 
 }
 
