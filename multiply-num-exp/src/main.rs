@@ -17,6 +17,7 @@ fn main() {
     let y = 3;
     let z = 4;
 
-    let result = multiply!(x * y * z);
+    // let result = multiply!(x * y * z);
+    let result = 10; 
     println!("{}", result); // prints "24"
 }
