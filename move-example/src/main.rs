@@ -1,3 +1,4 @@
+use std::thread; 
 fn main() {
 
     let x = vec![1, 2, 3]; 
@@ -16,4 +17,16 @@ fn main() {
 
     // closure(); 
     println!(" X is shaa  {:?} ", x);
+
+
+
+    // Third Example
+    // Importedd Tread Crate
+    let mut v = vec![1,2,3];
+    thread::spawn( move || {
+        v.push(32);
+    }); 
+
+    // println!(" V is {:?}", v); 
+
 }
