@@ -1,4 +1,7 @@
+// used for parallel execution
 use std::thread;
+
+// used for shared ownership
 use std::sync::{Arc, Mutex};
 
 fn main() {
