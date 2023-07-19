@@ -1,5 +1,6 @@
 
-fn main {def create_class(class_name, attributes):
+fn main() {
+    def create_class(class_name, attributes):
     # Define a dictionary to hold the class attributes
     class_dict = {}
 
@@ -30,4 +31,5 @@ print(obj.x)  # Output: 10
 print(obj.y)  # Output: 20
 print(obj.add())  # Output: 30
 print(obj.multiply())  # Output: 200
+
 }

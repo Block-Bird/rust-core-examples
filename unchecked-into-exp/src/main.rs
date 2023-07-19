@@ -7,3 +7,12 @@ fn main() {
     println!("Printing Y {:?} ", y); 
 
 }
+
+
+fn testnet_genesis(
+	wasm_binary: &[u8],
+	initial_authorities: Vec<(AccountId, AuraId, GrandpaId)>,
+	root_key: AccountId,
+	endowed_accounts: Vec<AccountId>,
+	_enable_println: bool,
+) -> GenesisConfig {

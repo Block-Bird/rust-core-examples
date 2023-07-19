@@ -9,10 +9,13 @@ macro_rules! generate_struct {
 }
 
 // Use the macro to generate a struct named "Person" with fields "name" and "age"
-// generate_struct!(Person {
-//     name: String,
-//     age: u32,
-// });
+generate_struct!(Person {
+    name: String,
+    age: u32,
+});
+
+
+
 
 fn main() {
     // Create an instance of the generated "Person" struct
