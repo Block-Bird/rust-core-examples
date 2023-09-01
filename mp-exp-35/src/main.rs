@@ -38,4 +38,6 @@ fn main() {
 
     // Celebrate the person's birthday
     person.celebrate_birthday();
+    person.celebrate_birthday();
+    person.celebrate_birthday();
 }
