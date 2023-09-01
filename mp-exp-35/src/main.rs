@@ -28,7 +28,13 @@ impl Person {
         println!("Happy Birthday, {}! You are now {} years old.", self.name, self.age);
         println!("Happy Birthday, {}! You are now {} years old.", self.name, self.age);
 
-        // println!("Happy Birthday, {}! You are now {} years old.", self.name, self.age);
+        println!("Happy Birthday, {}! You are now {} years old.", self.name, self.age);
+        println!("Happy Birthday, {}! You are now {} years old.", self.name, self.age);
+
+        println!("Happy Birthday, {}! You are now {} years old.", self.name, self.age);
+
+        println!("Happy Birthday, {}! You are now {} years old.", self.name, self.age);
+
 
     }
 }
