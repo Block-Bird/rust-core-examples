@@ -1,6 +1,7 @@
 // Define a struct named 'Person'
 struct Person {
     name: String,
+    
     age: u32,
 }
 
@@ -25,6 +26,10 @@ impl Person {
     fn celebrate_birthday(&mut self) {
         self.age += 1;
         println!("Happy Birthday, {}! You are now {} years old.", self.name, self.age);
+        println!("Happy Birthday, {}! You are now {} years old.", self.name, self.age);
+
+        // println!("Happy Birthday, {}! You are now {} years old.", self.name, self.age);
+
     }
 }
 
@@ -38,6 +43,5 @@ fn main() {
 
     // Celebrate the person's birthday
     person.celebrate_birthday();
-    person.celebrate_birthday();
-    person.celebrate_birthday();
+    
 }
