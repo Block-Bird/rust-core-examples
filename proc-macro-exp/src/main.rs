@@ -10,7 +10,16 @@ macro_rules! vec_strs {
     };
 }
 
+macro_rules! fiveTime {
+    ($x: expr) => {
+        $x * 5
+    };
+
+}
+
 fn main() {
     let v = vec_strs!["one", "two", "three"];
     println!("{:?}", v);
+
+    println!("Five time is {:?}", fiveTime!(5*2+1));
 }
