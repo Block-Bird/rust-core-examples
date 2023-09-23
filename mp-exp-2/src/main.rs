@@ -1,35 +1,64 @@
+use proc_macro::TokenStream;
+use quote::quote;
+use syn::{parse_macro_input, Data, DeriveInput, Fields};
 
-fn main() {
-    def create_class(class_name, attributes):
-    # Define a dictionary to hold the class attributes
-    class_dict = {}
+#[proc_macro]
+pub fn debuggable(input: TokenStream) -> TokenStream {
+    // Parse the input as a Rust syntax tree.
+    let input = parse_macro_input!(input as DeriveInput);
 
-    # Add attributes to the class dictionary
-    for attr_name, attr_value in attributes.items():
-        class_dict[attr_name] = attr_value
+    // Get the name of the struct being derived for.
+    let struct_name = &input.ident;
 
-    # Create a new class dynamically
-    new_class = type(class_name, (object,), class_dict)
-    return new_class
+    // Generate the implementation of the Debug trait.
+    let generated = match &input.data {
+        Data::Struct(data_struct) => {
+            match &data_struct.fields {
+                Fields::Named(fields_named) => {
+                    let field_names = fields_named.named.iter().map(|field| &field.ident);
+                    quote! {
+                        impl std::fmt::Debug for #struct_name {
+                            fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+                                f.debug_struct(stringify!(#struct_name))
+                                    #(.field(stringify!(#field_names), &self.#field_names))*
+                                    .finish()
+                            }
+                        }
+                    }
+                }
+                Fields::Unnamed(fields_unnamed) => {
+                    let field_indices = (0..fields_unnamed.unnamed.len()).map(|i| syn::Index::from(i));
+                    quote! {
+                        impl std::fmt::Debug for #struct_name {
+                            fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+                                f.debug_tuple(stringify!(#struct_name))
+                                    #(.field(&self.#field_indices))*
+                                    .finish()
+                            }
+                        }
+                    }
+                }
+                Fields::Unit => {
+                    quote! {
+                        impl std::fmt::Debug for #struct_name {
+                            fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+                                f.debug_struct(stringify!(#struct_name))
+                                    .finish()
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        Data::Enum(_) | Data::Union(_) => {
+            quote! {
+                // Only structs are supported for the Debug trait auto-implementation.
+                // Enums and unions are not supported.
+                compile_error!("Only structs are supported for #[debuggable]");
+            }
+        }
+    };
 
-# Define attributes for the class
-class_attributes = {
-    'x': 10,
-    'y': 20,
-    'add': lambda self: self.x + self.y,
-    'multiply': lambda self: self.x * self.y
-}
-
-# Create a new class using meta programming
-MyClass = create_class('MyClass', class_attributes)
-
-# Create an instance of the dynamically created class
-obj = MyClass()
-
-# Access and use the attributes and methods
-print(obj.x)  # Output: 10
-print(obj.y)  # Output: 20
-print(obj.add())  # Output: 30
-print(obj.multiply())  # Output: 200
-
+    // Return the generated implementation as a TokenStream.
+    generated.into()
 }
