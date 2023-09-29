@@ -3,7 +3,7 @@ use proc_macro::TokenStream;
 use quote::quote;
 use syn::{parse_macro_input, DeriveInput};
 
-#[proc_macro]
+// #[proc_macro]
 pub fn custom_derive(input: TokenStream) -> TokenStream {
     // Parse the input into a DeriveInput struct
     let input = parse_macro_input!(input as DeriveInput);
@@ -21,7 +21,7 @@ pub fn custom_derive(input: TokenStream) -> TokenStream {
     expanded.into()
 }
 
-#[custom_derive]
+// #[custom_derive]
 struct MyStruct;
 
 fn main() {
