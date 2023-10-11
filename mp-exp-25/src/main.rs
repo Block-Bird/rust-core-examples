@@ -17,26 +17,26 @@ macro_rules! define_structs {
     };
 }
 
-// Use the macro to define multiple structs
-define_structs! {
-    Person {
-        name: String,
-        age: u32,
-    }
-
-    Company {
-        name: String,
-        employees: u32,
-    }
-
-    Car {
-        make: String,
-        model: String,
-        year: u32,
-    }
-}
-
 fn main() {
+    // Use the macro to define multiple structs
+    define_structs! {
+        Person {
+            name: String,
+            age: u32,
+        }
+
+        Company {
+            name: String,
+            employees: u32,
+        }
+
+        Car {
+            make: String,
+            model: String,
+            year: u32,
+        }
+    }
+
     let person = Person {
         name: "Alice".to_string(),
         age: 30,
