@@ -1,10 +1,6 @@
-// Define a macro to generate multiple structs with similar fields
 macro_rules! define_structs {
-    // Base case: no more structs to define
-    () => {};
+    () => {}; // Base case
 
-    // Define a struct with the given name and fields,
-    // and recursively call the macro for the rest of the structs
     ($struct_name:ident { $($field_name:ident : $field_type:ty),* } $($rest:tt)*) => {
         struct $struct_name {
             $(
@@ -51,7 +47,7 @@ fn main() {
         make: "Toyota".to_string(),
         model: "Camry".to_string(),
         year: 2022,
-    };
+    }
 
     // Do something with the generated structs
 }
