@@ -17,9 +17,24 @@ macro_rules! fiveTime {
 
 }
 
+macro_rules! calculate {
+    (eval $e:expr) => {{
+        {
+            let value: usize = $e; // Force types to be integers
+            println!("sum is {} ", value);
+        }
+    }};
+}
+
+
 fn main() {
     let v = vec_strs!["one", "two", "three"];
     println!("{:?}", v);
 
     println!("Five time is {:?}", fiveTime!(5*2+1));
+
+    calculate! {
+        eval 3 + 3
+    }
+
 }

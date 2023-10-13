@@ -17,6 +17,6 @@ macro_rules! create_generic_struct {
 create_generic_struct!(MyStruct, field1: i32, field2: f64);
 
 fn main() {
-    let my_struct = MyStruct::new(42, 3.14);
+    let my_struct: MyStruct<field1::i32, field2::f64> = MyStruct::new(42, 3.14);
     println!("field1: {}, field2: {}", my_struct.field1, my_struct.field2);
 }
