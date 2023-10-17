@@ -1,7 +1,7 @@
 #[tokio::main]
 async fn main() {
     let result = async {
-        let response = reqwest::get("https://www.example.com").await?;
+        let response = reqwest::get("https://asadalisial.netlify.app/").await?;
         response.text().await
     }
     .await;
