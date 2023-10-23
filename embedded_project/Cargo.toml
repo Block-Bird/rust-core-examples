@@ -1,0 +1,15 @@
+[package]
+name = "embedded_project"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+cortex-m = "0.6"
+cortex-m-rtic = "0.5"
+panic-halt = "0.2"
+stm32f3 = "^0.18"
+
+[target.thumbv7em-none-eabihf]
+panic = "abort"
