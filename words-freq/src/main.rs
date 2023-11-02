@@ -1,4 +1,4 @@
-use std::fs::File;
+use std::fs;
 use std::io::{BufReader, BufRead};
 
 
@@ -19,14 +19,14 @@ fn main() {
 
 
 fn read_file() -> std::io::Result<()> {
-    let file = File::open("essay.txt")?; 
-    let reader = BufReader::new(file);
+    // let file = File::open("essay.txt")?; 
+    // let reader = BufReader::new(file);
 
-    for line in reader.lines() {
-        
-        let line = line ?;
-        print!("{:?}", line);
-    }
+    let file_content = fs::read_to_string("essay.txt")?;
+
+    let upper_case_text = file_content.to_uppercase();
+
+    print!("{}", upper_case_text);
 
     Ok(())
 }
