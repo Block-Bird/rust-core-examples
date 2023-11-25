@@ -1,5 +1,5 @@
 // Procedural macro example
-use proc_macro;
+// use proc_macro;
 
 #[proc_macro]
 pub fn generate_function(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
@@ -13,9 +13,10 @@ pub fn generate_function(input: proc_macro::TokenStream) -> proc_macro::TokenStr
     output.parse().unwrap()
 }
 // Using the procedural macro
-generate_function!(Hello, world!);
+// 
 
 fn main() {
     // Calling the generated function
-    generated_function();
+    // generated_function();
+    generate_function!(Hello, world!);
 }
