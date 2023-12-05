@@ -1,5 +1,6 @@
 use std::sync::mpsc;
 use std::thread;
+use std::time::Duration;
 
 
 
@@ -10,12 +11,25 @@ fn main() {
     let (tx, rx) = mpsc::channel(); 
 
     thread::spawn( move || {
-        let val = String::from("Hi"); 
-        tx.send(val).unwrap(); 
+
+        let vals = vec![
+            String::from("hi"), 
+            String::from("From"), 
+            String::from("the"), 
+            String::from("Thread"),
+        ];
+
+
+        for val in vals {
+            tx.send(val).unwrap(); 
+            thread::sleep(Duration::from_secs(1)); 
+        }
+
     });
 
 
-    let receiver = rx.recv().unwrap(); 
-    println!("Received Data is {} ", receiver); 
+    for i in rx {
+        println!("Received Data is {} ", i); 
+    }
 
 }
