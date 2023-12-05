@@ -11,10 +11,11 @@ fn main() {
 
     thread::spawn( move || {
         let val = String::from("Hi"); 
-
-        let temp = &val; 
-        tx.send(temp).unwrap(); 
-        println!("The Value {} is sent ", val);
+        tx.send(val).unwrap(); 
     });
+
+
+    let receiver = rx.recv().unwrap(); 
+    println!("Received Data is {} ", receiver); 
 
 }
