@@ -10,6 +10,9 @@ fn main() {
     // sender and receiver
     let (tx, rx) = mpsc::channel(); 
 
+
+    let tx1 = tx.clone(); 
+    
     thread::spawn( move || {
 
         let vals = vec![
@@ -28,8 +31,26 @@ fn main() {
     });
 
 
+    thread::spawn( move || {
+
+        let vals = vec![
+            String::from("More"), 
+            String::from("Messages"), 
+            String::from("for"), 
+            String::from("you"),
+        ];
+
+        for val in vals {
+            tx1.send(val).unwrap(); 
+            thread::sleep(Duration::from_secs(1)); 
+        }
+
+    });
+
+
     for i in rx {
         println!("Received Data is {} ", i); 
     }
+
 
 }
