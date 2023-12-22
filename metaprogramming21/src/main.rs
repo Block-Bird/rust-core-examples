@@ -5,7 +5,7 @@ macro_rules! generate_getters {
         // For each field, generate a getter method
         $(
             // Getter method for the field
-            fn $field(&self) -> &i32 {
+            pub fn $field(&self) -> &i32 {
                 &self.$field
             }
         )*
@@ -19,7 +19,7 @@ macro_rules! generate_setters {
         // For each field, generate a setter method
         $(
             // Setter method for the field
-            fn $field(&mut self, value: i32) {
+            pub fn $field(&mut self, value: i32) {
                 self.$field = value;
             }
         )*
@@ -27,6 +27,7 @@ macro_rules! generate_setters {
 }
 
 // Define a struct with fields
+#[derive(Debug)] // Add a derive attribute for Debug trait
 struct Person {
     name: String,
     age: i32,
