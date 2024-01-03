@@ -34,4 +34,25 @@ fn main() {
         Some(age) => println!("Removed Charlie, who is {} years old", age),
         None => println!("Charlie is not in the HashMap"),
     }
+
+    // Clear the HashMap
+    my_map.clear();
+    println!("HashMap after clearing: {:?}", my_map);
+
+    // Insert more key-value pairs
+    my_map.insert(String::from("Eve"), 28);
+    my_map.insert(String::from("Frank"), 35);
+
+    // Handle a potential error when inserting a duplicate key
+    if let Some(old_value) = my_map.insert(String::from("Eve"), 29) {
+        println!("Eve's age was {}, updated to 29", old_value);
+    } else {
+        println!("Eve was not in the HashMap, inserted with age 29");
+    }
+
+    // Use entry API to update or insert
+    my_map.entry(String::from("Grace")).or_insert(40);
+
+    // Print the final HashMap
+    println!("Final HashMap: {:?}", my_map);
 }
