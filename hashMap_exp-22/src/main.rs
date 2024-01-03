@@ -44,11 +44,11 @@ fn main() {
     my_map.insert(String::from("Frank"), 35);
 
     // Handle a potential error when inserting a duplicate key
-    if let Some(old_value) = my_map.insert(String::from("Eve"), 29) {
-        println!("Eve's age was {}, updated to 29", old_value);
-    } else {
-        println!("Eve was not in the HashMap, inserted with age 29");
-    }
+    // if let Some(old_value) = my_map.insert(String::from("Eve"), 29) {
+    //     println!("Eve's age was {}, updated to 29", old_value);
+    // } else {
+    //     println!("Eve was not in the HashMap, inserted with age 29");
+    // }
 
     // Use entry API to update or insert
     my_map.entry(String::from("Grace")).or_insert(40);
