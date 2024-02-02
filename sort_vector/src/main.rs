@@ -17,9 +17,9 @@ fn main() {
     
     let mut people = vec![
         Person::new("asad".to_string(), 32),
-        Person::new("Ali".to_string(), 45), 
-        Person::new("Sial".to_string(), 12), 
-        Person::new("Zafar".to_string(), 62)
+        Person::new("ali".to_string(), 45), 
+        Person::new("sial".to_string(), 12), 
+        Person::new("zafar".to_string(), 62)
     ];
 
     people.sort(); 
